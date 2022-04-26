@@ -12,9 +12,9 @@
 <body>
     <section class="Home">
 
-        <header class="Home__header Header">
+        <header class="Header">
             <div class="row">
-                <div class="Header__logo Logo">
+                <div class="logo">
                     <img src="icons/logo.svg" width="70px" alt="Logo El Geladon" class="Logo__icone" />
                     <span class="Logo__titulo"> El Geladon </span>
                 </div>
@@ -28,8 +28,13 @@
             </div>
         </header>
 
-        <section class="button-modal-create">
-            <button type="button" class="default-button" onclick="abrirModal()">Cadastrar Paleta</button>
+
+        <section class="options">
+            <span class="msg-alert"></span>
+            <div class="btns-list-cad">
+                <a href="/" class="default-button list-all">Listar todas as paletas</a>
+                <button type="button" class="default-button" onclick="showModal()">Cadastrar Paleta</button>
+            </div>
         </section>
 
         <section class="modal-overlay" id="overlay">
@@ -49,7 +54,7 @@
                         <textarea type="text" name="descricao" id="descricao" placeholder="Descrição da Paleta"
                             rows="5"></textarea>
                         <input type="text" name="foto" id="foto" placeholder="Link da Foto da Paleta">
-                        <button id="button-form-modal" onclick="createPaleta()">Cadastrar</button>
+                        <button id="button-form-modal" onclick="submitPaleta()">Cadastrar</button>
                     </div>
                 </div>
             </div>
@@ -74,10 +79,11 @@
         <h2>Pesquisar Paleta</h2>
         <div class="paleta-escolhida-espaco">
             <div id="paleta-escolhida-input-espaco">
-                <input type="number" id="idPaleta" placeholder="Digite o ID da paleta e clique em 'Escolher'" />
+                <input type="text" id="idPaleta" placeholder="Digite o ID da paleta e clique em 'Escolher'" />
                 <button class="default-button" onclick="findByIdPaletas()">ESCOLHER</button>
             </div>
-            <div id="paletaEscolhida">
+
+            <div id="chosen-paleta">
 
             </div>
         </div>

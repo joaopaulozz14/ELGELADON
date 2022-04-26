@@ -1,55 +1,26 @@
-const paletas = [
-  {
-    id: 1,
-    sabor: 'Açaí com Leite Condensado',
-    descricao:
-      'Quam vulputate dignissim suspendisse in est ante in nibh mauris.',
-    foto: 'images/acai-com-leite-condensado.png',
-    preco: 10.0,
-  },
-  {
-    id: 2,
-    sabor: 'Banana com Nutella',
-    descricao:
-      'Quam vulputate dignissim suspendisse in est ante in nibh mauris.',
-    foto: 'images/banana-com-nutella.png',
-    preco: 10.0,
-  },
-  {
-    id: 3,
-    sabor: 'Chocolate Belga',
-    descricao:
-      'Quam vulputate dignissim suspendisse in est ante in nibh mauris.',
-    foto: 'images/chocolate-belga.png',
-    preco: 7.0,
-  },
-];
+const Paleta = require('../models/Paleta');
 
-const findPaletasService = () => {
+const findPaletasService = async () => {
+  const paletas = await Paleta.find();
   return paletas;
 };
 
-const findPaletaByIdService = (id) => {
-  return paleta = paletas.find((paleta) => paleta.id === id);
-  
+const findPaletaByIdService = async (idParam) => {
+  const onePaleta = await Paleta.findById(idParam);
+  return onePaleta;  
 };
 
 
-const createPaletaService = (newPaleta) => {
-  const newId = paletas.length + 1;
-  newPaleta.id = newId;
-  paletas.push(newPaleta);
-  return newPaleta;
+const createPaletaService = async (newPaleta) => {
+  const createdPaleta = await Paleta.create(newPaleta)
+  return createdPaleta;
 };
-const updatePaletaService = (id, paletaEdited) => {
-  paletaEdited['id'] = id;
-  const paletaIndex = paletas.findIndex((paleta) => paleta.id == id);
-  paletas[paletaIndex] = paletaEdited;
-  return paletaEdited;
+const updatePaletaService = async (idParam, editedPaleta) => {
+  const updatePaleta = await Paleta.findByIdAndUpdate(idParam, editedPaleta);
+  return updatePaleta;
 };
-const deletePaletaService = (id) => {
-  const paletaIndex = paletas.findIndex((paleta) => paleta.id == id);
-  return paletas.splice(paletaIndex, 1);
+const deletePaletaService = async (idParam) => {
+  return await Paleta.findByIdAndDelete(idParam);
 };
 
 module.exports = {
