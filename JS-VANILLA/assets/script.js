@@ -127,7 +127,7 @@ async function submitPaleta() {
   const preco = document.querySelector("#preco").value;
   const descricao = document.querySelector("#descricao").value;
   const foto = document.querySelector("#foto").value;
-
+  
   const paleta = {
     id,
     sabor,
@@ -136,6 +136,7 @@ async function submitPaleta() {
     foto,
   };
 
+/**Está usando a diferença, não a igualdade! */
   const modoEdicaoAtivado = id != "";
 
   const endpoint = baseURL + (modoEdicaoAtivado ? `/update-paleta/${id}` : `/create-paleta`);
@@ -150,6 +151,8 @@ async function submitPaleta() {
   });
 
   const novaPaleta = await response.json();
+  /**De onde vem esse message ?*/
+  /**O que está acontecendo aqui ?*/
   if (novaPaleta.message != undefined) {
     localStorage.setItem("message", novaPaleta.message);
     localStorage.setItem("type", "danger");
@@ -202,6 +205,7 @@ async function deletePaleta(id) {
       "Content-Type": "application/json",
     },
     mode: "cors",
+    /**Não passou o body*/
   });
 
   const result = await response.json();
